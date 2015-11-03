@@ -1,7 +1,8 @@
 class Piece
   attr_accessor :token, :position, :team, :board
-  def initialize(position)
+  def initialize(position, board)
     @position = position
+    @board = board
   end
 
   def to_s

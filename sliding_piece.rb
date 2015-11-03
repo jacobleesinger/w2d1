@@ -1,21 +1,25 @@
 class SlidingPiece < Piece
 
-  def moves(pos, directions)
-    valid_moves = []
-    (0..7).each do |row|
-      (0..7).each do |col|
-        if directions.include?(horizontal)
-          if row == pos[0] || col == pos[1]
-            valid_moves << [row, col]
-          end
-        end
-        if directions.include?(diagonal)
-          if row + col == pos[0] + pos[1] || row - col == pos[0] - pos [1]
-            valid_moves << [row, col]
-          end
-        end
+
+  def horizontal_and_vertical
+    [[-1, 0], [0, -1], [0, 1], [1, 0]]
+  end
+
+  def diagonal
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]]
+  end
+
+  def horizontal_and_vertical_moves
+    moves = []
+    horizontal_and_vertical.each do |row, col|
+      x, y = @position
+      while on_board?(x, y)
+        x, y = x + row, y + col
+        move = [x, y]
+        moves << move if valid_move?(move)
       end
     end
-    valid_moves
+    moves
   end
+  
 end
