@@ -4,6 +4,10 @@ class Piece
     @position = position
   end
 
+  def to_s
+    token
+  end
+
   def move(end_pos)
     if valid_move(end_pos)
       @position = end_pos
@@ -25,5 +29,5 @@ class Piece
   end
 
 
-  
+
 end

@@ -67,7 +67,8 @@ module Cursorable
   end
 
   def update_pos(diff)
-    new_pos = [@cursor_pos[0] + diff[0], @cursor_pos[1] + diff[1]]
-    @cursor_pos = new_pos if @board.in_bounds?(new_pos)
+    row = @cursor_pos[0] + diff[0]
+    col =  @cursor_pos[1] + diff[1]
+    @cursor_pos = [row, col] if row.between?(0, 7) && col.between?(0, 7)
   end
 end

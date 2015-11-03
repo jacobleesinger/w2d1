@@ -1,4 +1,5 @@
 class Castle < SlidingPiece
+  attr_reader :token
   def initialize
     @token = "[C]"
   end
@@ -21,7 +22,7 @@ class Castle < SlidingPiece
         # can probably move to SlidingPiece
       end
     end
-    
+
 
   end
 

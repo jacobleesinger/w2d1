@@ -1,9 +1,10 @@
 class King < SteppingPiece
+  attr_reader :token
   def initialize
     @token = "[K]"
   end
 
-  
+
 
   def valid_moves
     # king cannot move into danger! implement later

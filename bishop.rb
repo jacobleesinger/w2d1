@@ -1,4 +1,5 @@
 class Bishop < SlidingPiece
+  attr_reader :token
   def initialize
     @token = "[B]"
   end
