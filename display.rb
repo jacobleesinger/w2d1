@@ -11,6 +11,7 @@ class Display
   def initialize(board = Board.new)
     @board = board
     @cursor = [0, 0]
+    render
   end
 
   def render
@@ -28,8 +29,12 @@ class Display
   end
 
   def tile_type(tile)
-    return tile.token if tile.class == Piece
-    "[ ]"
+    return "[ ]" if tile.nil?
+    tile.token
   end
 
+end
+
+if __FILE__ == $PROGRAM_NAME
+  Display.new
 end

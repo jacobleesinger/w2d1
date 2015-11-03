@@ -1,4 +1,12 @@
 require_relative 'piece.rb'
+require_relative 'sliding_piece.rb'
+require_relative 'stepping_piece.rb'
+require_relative 'castle.rb'
+require_relative 'king.rb'
+require_relative 'knight.rb'
+require_relative 'pawn.rb'
+require_relative 'queen.rb'
+require_relative 'bishop.rb'
 
 class Board
   attr_reader :grid
@@ -8,11 +16,15 @@ class Board
   end
 
   def place_pieces
-    @grid[0].map! { |el| el = Piece.new }
-    @grid[1].map! { |el| el = Piece.new }
-    @grid[6].map! { |el| el = Piece.new }
-    @grid[7].map! { |el| el = Piece.new }
+    back_row = [Castle.new, Knight.new, Bishop.new, Queen.new,
+    King.new, Bishop.new, Knight.new, Castle.new]
+    @grid[0] = back_row
+    @grid[1].map! { |el| el = Pawn.new }
+    @grid[6].map! { |el| el = Pawn.new }
+    @grid[7] = back_row.reverse
   end
+
+
 
   def move(start_pos, end_pos)
     x, y = start_pos
