@@ -14,7 +14,7 @@ class Display
     render
   end
 
-  def move
+  def move_cursor
     result = nil
     until result
       render
@@ -23,6 +23,8 @@ class Display
     end
     result
   end
+
+
 
   def render
     system("clear")
@@ -58,8 +60,10 @@ class Display
 
 end
 
+
+
 if __FILE__ == $PROGRAM_NAME
   b = Board.new
   a = Display.new(b.grid)
-  a.move
+  a.move_cursor
 end

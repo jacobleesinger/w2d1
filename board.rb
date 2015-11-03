@@ -24,6 +24,8 @@ class Board
     @grid[7] = back_row.reverse
   end
 
+
+
   def [](pos)
     row, col = pos
     @grid[row][col]
@@ -33,7 +35,7 @@ class Board
     row, col = pos
     @grid[row][col] = value
   end
-  
+
   def move(start_pos, end_pos)
     x, y = start_pos
     x2, y2 = end_pos

@@ -1,7 +1,7 @@
 class SlidingPiece < Piece
 
-
-  def horizontal_and_vertical
+# didn't have much success with the search the whole row/column and drop off  invalid moves idea, now trying to search outward from piece for valid moves in a given set of directions.
+  def straight
     [[-1, 0], [0, -1], [0, 1], [1, 0]]
   end
 
@@ -9,9 +9,9 @@ class SlidingPiece < Piece
     [[-1, -1], [-1, 1], [1, -1], [1, 1]]
   end
 
-  def horizontal_and_vertical_moves
+  def straight
     moves = []
-    horizontal_and_vertical.each do |row, col|
+    straight.each do |row, col|
       x, y = @position
       while on_board?(x, y)
         x, y = x + row, y + col
@@ -21,5 +21,5 @@ class SlidingPiece < Piece
     end
     moves
   end
-  
+
 end

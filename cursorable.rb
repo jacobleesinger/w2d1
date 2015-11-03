@@ -1,5 +1,16 @@
 require "io/console"
 
+
+# summary of changes made to implement cursor
+# slight changes to cursorable#update_pos to match our board size
+# display
+# renamed @cursor @cursor_pos to match cursorable
+# added move_cursor method
+# refactored #render and created #build_grid #build_row, and #colors_for methods to mirror the cursor game's display
+# call #move_cursor on start
+# board
+# added bracket methods
+
 module Cursorable
   KEYMAP = {
     " " => :space,
