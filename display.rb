@@ -2,7 +2,7 @@ require 'colorize'
 require_relative 'cursorable.rb'
 require_relative 'board.rb'
 require_relative 'piece.rb'
-
+require 'byebug'
 class Display
   include Cursorable
 
@@ -10,7 +10,7 @@ class Display
 
   def initialize(board = Board.new)
     @board = board
-    @cursor = [0, 0]
+    @cursor_pos = [0, 0]
     render
   end
 
@@ -18,6 +18,7 @@ class Display
     result = nil
     until result
       render
+      # debugger
       result = get_input
     end
     result
