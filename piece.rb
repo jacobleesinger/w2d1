@@ -13,7 +13,7 @@ class Piece
   def valid_move?(pos)
     x, y = pos
 
-    return false unless on_board?(pos)    
+    return false unless on_board?(pos)
     return true if @board.grid[x][y].nil?
     return false if @board.grid[x][y].team == self.team
   end
@@ -25,5 +25,5 @@ class Piece
   end
 
 
-  end
+  
 end

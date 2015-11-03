@@ -19,6 +19,9 @@ class Castle < SlidingPiece
         # must include self but cannot move to self
         # can include enemy pieces but only at first or last
         # can probably move to SlidingPiece
+      end
+    end
+    
 
   end
 
