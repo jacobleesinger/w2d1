@@ -1,39 +1,21 @@
 class SlidingPiece < Piece
 
-  def horizontal
-    @board.grid[@position[0]]
-  end
-
-  def vertical
-    @board.grid.transpose[@position[1]]
-  end
-
-  def left_diagonal(pos)
-    x, y = pos
-    i = 1
-    j = 1
-    left = [[x - i, y - j], [x + i, y + j]]
-    left_diagonal = []
-    until left_diagonal.length == 8
-      left_diagonal << left
-      i += 1
-      j += 1
+  def moves(pos, directions)
+    valid_moves = []
+    (0..7).each do |row|
+      (0..7).each do |col|
+        if directions.include?(horizontal)
+          if row == pos[0] || col == pos[1]
+            valid_moves << [row, col]
+          end
+        end
+        if directions.include?(diagonal)
+          if row + col == pos[0] + pos[1] || row - col == pos[0] - pos [1]
+            valid_moves << [row, col]
+          end
+        end
+      end
     end
-    left_diagonal
+    valid_moves
   end
-
-  def right_diagonal(pos)
-    x, y = pos
-    i = 1
-    j = 1
-
-    right = [[x - i, y + j], [x + i, y - j]]
-    right_diagonal = []
-    until right_diagonal.length == 8
-      right_diagonal << right
-      i += 1
-      j += 1
-    end
-  end
-  
 end
