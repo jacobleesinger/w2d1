@@ -9,11 +9,24 @@ class SlidingPiece < Piece
     [[-1, -1], [-1, 1], [1, -1], [1, 1]]
   end
 
-  def straight
+  def straight_moves
     moves = []
     straight.each do |row, col|
       x, y = @position
-      while on_board?(x, y)
+      while on_board?([x, y])
+        x, y = x + row, y + col
+        move = [x, y]
+        moves << move if valid_move?(move)
+      end
+    end
+    moves
+  end
+
+  def diagonal_moves
+    moves = []
+    diagonal.each do |row, col|
+      x, y = @position
+      while on_board?([x, y])
         x, y = x + row, y + col
         move = [x, y]
         moves << move if valid_move?(move)

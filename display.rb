@@ -41,15 +41,21 @@ class Display
   end
 
   def build_row(row, i)
-    row.map.with_index do |piece, j|
+    row.map.with_index do |tile, j|
       color_options = colors_for(i, j)
-      piece.to_s.colorize(color_options)
+      if tile.is_a?(Piece)
+        tile.to_s.colorize(color_options)
+      else
+        "[ ]".colorize(color_options)
+      end
+
+
     end
   end
 
   def colors_for(i, j)
     if [i, j] == @cursor_pos
-      bg = :light_red
+      bg = :yellow
     elsif (i + j).odd?
       bg = :light_blue
     else
