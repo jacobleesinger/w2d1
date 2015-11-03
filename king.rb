@@ -6,21 +6,14 @@ class King < SteppingPiece
 
 
 
-
-  def valid_moves
-    # king cannot move into danger! implement later
+  def possible_moves
+    # king cannot move into danger! implement later using #check?
     moves = []
-    board.grid.each_with_index do |row, x|
-      row.each_with_index do |tile, y|
-        if (@position[0] - x).abs == 1 && (@position[1] - y).abs == 1
-          if tile.nil? || tile.team != self.team
-            moves << [x, y]
-          end
-        end
-      end
+    moves += straight_moves
+    moves += diagonal_moves
+    moves.select do |x, y|
+      (@position[0] - x).abs == 1 || (@position[1] - y).abs == 1
     end
-    moves
   end
-
 
 end
