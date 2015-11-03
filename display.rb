@@ -6,6 +6,15 @@ require 'byebug'
 class Display
   include Cursorable
 
+# [C][H][B][Q][K][B][H][C]
+# [p][p][p][p][p][p][p][p]
+# [ ][ ][ ][ ][ ][ ][ ][ ]
+# [ ][ ][ ][ ][ ][ ][ ][ ]
+# [ ][ ][ ][ ][ ][ ][ ][ ]
+# [ ][ ][ ][ ][ ][ ][ ][ ]
+# [p][p][p][p][p][p][p][p]
+# [C][H][B][K][Q][B][H][C]
+
   attr_accessor :cursor, :board
 
   def initialize(board = Board.new)
@@ -35,7 +44,7 @@ class Display
 
 
   def build_grid
-    @board.map.with_index do |row, i|
+    @board.grid.map.with_index do |row, i|
       build_row(row, i)
     end
   end

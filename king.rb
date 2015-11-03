@@ -1,8 +1,9 @@
 class King < SteppingPiece
   attr_reader :token
-  def initialize
-    @token = "[K]"
-  end
+    def to_s
+      "[K]"
+    end
+
 
 
 

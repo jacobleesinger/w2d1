@@ -1,5 +1,5 @@
 class Piece
-  attr_accessor :token, :position, :team, :board
+  attr_accessor :position, :team, :board
   def initialize(position, board)
     @position = position
     @board = board

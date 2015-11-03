@@ -1,6 +1,5 @@
 class Pawn < Piece
-  attr_reader :token
-  def initialize
-    @token = "[p]"
+  def to_s
+    "[p]"
   end
 end

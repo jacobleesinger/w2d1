@@ -1,6 +1,6 @@
 class Knight < SteppingPiece
-  attr_reader :token
-  def initialize
-    @token = "[H]"
+  private
+  def to_s
+    "[H]"
   end
 end

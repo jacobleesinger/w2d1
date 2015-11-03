@@ -16,12 +16,39 @@ class Board
   end
 
   def place_pieces
-    back_row = [Castle.new, Knight.new, Bishop.new, Queen.new,
-    King.new, Bishop.new, Knight.new, Castle.new]
-    @grid[0] = back_row
-    @grid[1].map! { |el| el = Pawn.new }
-    @grid[6].map! { |el| el = Pawn.new }
-    @grid[7] = back_row.reverse
+    @grid.each_with_index do |row, ridx|
+      row.each_with_index do |spot, cidx|
+        if ridx == 0 || ridx == 7
+          if cidx == 0 || cidx == 7
+            @grid[ridx][cidx] = Castle.new([ridx, cidx], self)
+          end
+          if cidx == 1 || cidx == 6
+            @grid[ridx][cidx] = Knight.new([ridx, cidx], self)
+          end
+          if cidx == 2 || cidx == 5
+            @grid[ridx][cidx] = Bishop.new([ridx, cidx], self)
+          end
+          if ridx == 0 && cidx == 3
+            @grid[ridx][cidx] = Queen.new([ridx, cidx], self)
+          end
+          if ridx == 0 && cidx == 4
+            @grid[ridx][cidx] = King.new([ridx, cidx], self)
+          end
+          if ridx == 7 && cidx == 3
+            @grid[ridx][cidx] = King.new([ridx, cidx], self)
+          end
+          if ridx == 7 && cidx == 4
+            @grid[ridx][cidx] = Queen.new([ridx, cidx], self)
+          end
+        end
+
+        if ridx == 1 || ridx == 6
+          @grid[ridx].map! { Pawn.new([ridx, cidx], self) }
+        end
+
+      end
+
+    end
   end
 
 

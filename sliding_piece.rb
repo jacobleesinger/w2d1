@@ -12,24 +12,36 @@ class SlidingPiece < Piece
   def straight_moves
     moves = []
     straight.each do |row, col|
-      x, y = @position
-      while on_board?([x, y])
-        x, y = x + row, y + col
+      x, y = @position.dup
+      x, y = x + row, y + col
+      tile = @board.grid[x][y]
+      while can_occupy?(x, y)
+                                            #will need to be able to
+                                            #move to enemy pieces somehow
         move = [x, y]
         moves << move if valid_move?(move)
+        x, y = x + row, y + col
       end
+
     end
     moves
+  end
+
+  def can_occupy?(x, y)
+    return false unless on_board?([x, y])
+    @board.grid[x][y].nil?
   end
 
   def diagonal_moves
     moves = []
     diagonal.each do |row, col|
-      x, y = @position
-      while on_board?([x, y])
-        x, y = x + row, y + col
+      x, y = @position.dup
+      x, y = x + row, y + col
+      tile = @board.grid[x][y]
+      while can_occupy?(x, y)
         move = [x, y]
         moves << move if valid_move?(move)
+        x, y = x + row, y + col
       end
     end
     moves
