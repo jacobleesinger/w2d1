@@ -1,8 +1,9 @@
 class Piece
-  attr_accessor :position, :team, :board
+  attr_accessor :position, :team, :board, :has_moved
   def initialize(position, board)
     @position = position
     @board = board
+    @has_moved = false
   end
 
   def to_s
@@ -10,23 +11,22 @@ class Piece
   end
 
   def move(end_pos)
-    if valid_move(end_pos)
+    x, y = end_pos
+    if possible_moves.include?(end_pos)
+      @board.grid[x][y] = self
+      @board.grid[@position[0]][@position[1]] = nil
       @position = end_pos
+      @has_moved = true
     end
   end
 
-  def can_occupy?(x, y)
-    return false unless on_board?([x, y])
-    @board.grid[x][y].nil?
-  end
-
-  def valid_move?(pos)
+  def can_occupy?(pos)
     x, y = pos
-
-    return false unless on_board?(pos)
-    return true if @board.grid[x][y].nil?
-    return false if @board.grid[x][y].team == self.team
+    return false unless on_board?([x, y])
+    true if @board.grid[x][y].nil?
   end
+
+
 
   def on_board?(pos)
     x, y = pos
@@ -48,12 +48,12 @@ class Piece
       x, y = @position.dup
       x, y = x + row, y + col
       tile = @board.grid[x][y]
-      while can_occupy?(x, y)
-                                            #will need to be able to
-                                            #move to enemy pieces somehow
-        move = [x, y]
-        moves << move if valid_move?(move)
+      while can_occupy?([x, y])
+        moves << [x, y] if can_occupy?([x, y])
         x, y = x + row, y + col
+      end
+      if @board.grid[x][y]
+        moves << [x, y] if @board.grid[x][y].team != self.team
       end
 
     end
@@ -66,11 +66,15 @@ class Piece
       x, y = @position.dup
       x, y = x + row, y + col
       tile = @board.grid[x][y]
-      while can_occupy?(x, y)
+      while can_occupy?([x, y])
         move = [x, y]
-        moves << move if valid_move?(move)
+        moves << move if can_occupy?(move)
         x, y = x + row, y + col
       end
+      if @board.grid[x][y]
+        moves << [x, y] if @board.grid[x][y].team != self.team
+      end
+
     end
     moves
   end

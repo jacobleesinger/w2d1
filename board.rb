@@ -18,6 +18,8 @@ class Board
   def place_pieces
     @grid.each_with_index do |row, ridx|
       row.each_with_index do |spot, cidx|
+
+        #If on top row/bottom row...
         if ridx == 0 || ridx == 7
           if cidx == 0 || cidx == 7
             @grid[ridx][cidx] = Castle.new([ridx, cidx], self)
@@ -42,14 +44,25 @@ class Board
           end
         end
 
+        #If on top pawn row/bottom pawn row...
         if ridx == 1 || ridx == 6
-          @grid[ridx].map! { Pawn.new([ridx, cidx], self) }
+          @grid[ridx][cidx] = Pawn.new([ridx, cidx], self)
         end
+      end
+    end
 
+    @grid.each_with_index do |row, idx|
+      if idx == 0 || idx == 1
+        row.each { |piece| piece.team = "top" }
       end
 
+      if idx == 6 || idx == 7
+        row.each { |piece| piece.team = "bottom" }
+      end
     end
   end
+
+
 
 
 
