@@ -39,7 +39,12 @@ class Game
 
   def game_over?
     puts "checking if game is over"
-    return true if @player1.in_checkmate? || @player2.in_checkmate?
+    if @player1.in_checkmate?
+      puts "I think player1 is in checkmate"
+    end
+    if @player2.in_checkmate?
+      puts "I think player2 is in checkmate"
+    end
     false
   end
 

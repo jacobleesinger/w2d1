@@ -1,0 +1,3 @@
+stack overflow seems to happen when trying to select enemy pieces from all pieces
+
+it is getting into the if statement
