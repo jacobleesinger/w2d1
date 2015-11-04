@@ -1,4 +1,4 @@
-class Knight < SteppingPiece
+class Knight < Piece
 
   def to_s
     "[H]"
@@ -21,6 +21,6 @@ class Knight < SteppingPiece
       [x + @position[0], y + @position[1]]
     end
 
-    moves.select { |x, y| can_occupy?(x, y) }
+    moves.select { |x, y| can_occupy?([x, y]) }
   end
 end

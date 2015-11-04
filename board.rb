@@ -1,6 +1,4 @@
 require_relative 'piece.rb'
-require_relative 'sliding_piece.rb'
-require_relative 'stepping_piece.rb'
 require_relative 'castle.rb'
 require_relative 'king.rb'
 require_relative 'knight.rb'
@@ -13,6 +11,18 @@ class Board
   def initialize
     @grid = Array.new(8) { Array.new(8) }
     place_pieces
+  end
+
+  def set_teams
+    @grid.each_with_index do |row, idx|
+      if idx == 0 || idx == 1
+        row.each { |piece| piece.team = :team1 }
+      end
+
+      if idx == 6 || idx == 7
+        row.each { |piece| piece.team = :team2 }
+      end
+    end
   end
 
   def place_pieces
@@ -51,20 +61,8 @@ class Board
       end
     end
 
-    @grid.each_with_index do |row, idx|
-      if idx == 0 || idx == 1
-        row.each { |piece| piece.team = "top" }
-      end
 
-      if idx == 6 || idx == 7
-        row.each { |piece| piece.team = "bottom" }
-      end
-    end
   end
-
-
-
-
 
   def [](pos)
     row, col = pos
@@ -76,11 +74,5 @@ class Board
     @grid[row][col] = value
   end
 
-  def move(start_pos, end_pos)
-    x, y = start_pos
-    x2, y2 = end_pos
-    fail "no piece at #{start_pos}" unless @grid[x][y]
-    # fail "the piece at #{start_pos} cannot move to #{end_pos}"
-    # unless the move is valid for that piece
-  end
+
 end

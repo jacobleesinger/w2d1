@@ -47,12 +47,12 @@ class Piece
     straight.each do |row, col|
       x, y = @position.dup
       x, y = x + row, y + col
-      tile = @board.grid[x][y]
       while can_occupy?([x, y])
         moves << [x, y] if can_occupy?([x, y])
         x, y = x + row, y + col
       end
-      if @board.grid[x][y]
+      #Make taking enemy pieces available.
+      if on_board?([x, y]) && @board.grid[x][y]
         moves << [x, y] if @board.grid[x][y].team != self.team
       end
 
@@ -65,13 +65,12 @@ class Piece
     diagonal.each do |row, col|
       x, y = @position.dup
       x, y = x + row, y + col
-      tile = @board.grid[x][y]
       while can_occupy?([x, y])
         move = [x, y]
         moves << move if can_occupy?(move)
         x, y = x + row, y + col
       end
-      if @board.grid[x][y]
+      if on_board?([x, y]) && @board.grid[x][y]
         moves << [x, y] if @board.grid[x][y].team != self.team
       end
 

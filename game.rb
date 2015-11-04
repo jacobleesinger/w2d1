@@ -4,10 +4,13 @@ require_relative 'player.rb'
 require_relative 'display.rb'
 
 class Game
-
-  def initialize(players)
+  attr_accessor :player1, :player2, :board
+  def initialize
     @board = Board.new
-    @player1, @player2 = players
+    @player1 = Player.new(@board, :team1)
+    @player2 = Player.new(@board, :team2)
+    @board.set_teams
+    @display = Display.new(@board.grid)
   end
 
   def play
@@ -16,7 +19,7 @@ class Game
   end
 
   def take_turn
-    #render display
+    display.move_cursor
     #ask for a move
     #check if move is valid
     #perfom the move if valid

@@ -1,4 +1,4 @@
-class Bishop < SlidingPiece
+class Bishop < Piece
 
   def to_s
     "[B]"

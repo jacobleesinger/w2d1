@@ -1,4 +1,4 @@
-class Castle < SlidingPiece
+class Castle < Piece
 
   def to_s
     "[C]"
