@@ -20,6 +20,7 @@ class Player
     @board.grid[x][y] = nil
     @board.grid[x2][y2].position = [x2, y2]
     @board.grid[x2][y2].has_moved = true
+    puts "moved piece from #{start_pos} to #{end_pos}"
   end
 
   def get_pieces
@@ -61,16 +62,16 @@ class Player
   end
 
   def in_checkmate?
-    return false unless in_check?
-    return false unless get_king.possible_moves.empty?
-
-    threatening_pieces = enemy_pieces.select do |piece|
-      piece.possible_moves.include?(get_king.position)
-    end
-    return true if threatening_pieces.size > 1
-    enemy = threatening_pieces.first
-    return false if get_moves.include?(enemy.position)
-    return true if enemy.is_a?(Knight)
+    # return false unless in_check?
+    # return false unless get_king.possible_moves.empty?
+    #
+    # threatening_pieces = enemy_pieces.select do |piece|
+    #   piece.possible_moves.include?(get_king.position)
+    # end
+    # return true if threatening_pieces.size > 1
+    # enemy = threatening_pieces.first
+    # return false if get_moves.include?(enemy.position)
+    # return true if enemy.is_a?(Knight)
     false
     #Doesn't account for being able to block a checkmate.
   end

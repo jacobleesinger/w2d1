@@ -15,7 +15,9 @@ class Game
   end
 
   def play
+    puts "I'm about to take a turn"
     take_turn until game_over?
+    puts "I think the game is over"
     winner
   end
 
@@ -26,13 +28,17 @@ class Game
   end
 
   def take_turn
+    puts "starting take_turn"
     start_pos = @display.move_cursor
     end_pos = @display.move_cursor
     current_player.move(start_pos, end_pos)
+    puts "move has been made"
     @current_player = switch_players!(@current_player)
+    puts "players switched"
   end
 
   def game_over?
+    puts "checking if game is over"
     return true if @player1.in_checkmate? || @player2.in_checkmate?
     false
   end
