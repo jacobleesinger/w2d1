@@ -74,11 +74,3 @@ class Display
   end
 
 end
-
-
-
-if __FILE__ == $PROGRAM_NAME
-  b = Board.new
-  a = Display.new(b.grid)
-  a.move_cursor
-end
