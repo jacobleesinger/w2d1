@@ -47,7 +47,8 @@ class Player
     puts "in enemy_moves"
     moves = []
     enemy_pieces.each do |piece|
-      puts "in the each"
+      puts "in the each for  #{piece.team} #{piece.to_s} "
+      puts "possible moves for #{piece.to_s} are #{piece.possible_moves.inspect}"
       moves += piece.possible_moves
       puts "past possible moves"
     end

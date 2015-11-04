@@ -1,3 +1,11 @@
 stack overflow seems to happen when trying to select enemy pieces from all pieces
 
 it is getting into the if statement
+
+It's stack overflowing trying to check possible moves for team2 king
+king's basic moves are overflowing?
+
+not getting past King#enemy_moves
+not getting past each in King#enemy_moves
+
+It's stack overflowing when both kings have possible moves
